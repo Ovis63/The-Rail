@@ -2,9 +2,18 @@
 #include "Game.h"
 
 Game::Game()
-:m_window(sf::VideoMode(800, 600), "Railworld test")
-,m_player() 
+:m_window(sf::VideoMode(800, 600), "Railworld test"),
+m_fpsCounter(), m_font(), m_player() 
 {
+	if (!m_font.loadFromFile("arial.ttf"))
+	{
+		//ERROR!
+	}
+
+	m_fpsCounter.setPosition(0.f, 0.f);
+	m_fpsCounter.setString("0.0 FPS");
+	m_fpsCounter.setFont(m_font);
+
 	m_player.setRadius(80.f);
 	m_player.setPosition(100.f, 200.f);
 	m_player.setFillColor(sf::Color::Cyan);
@@ -12,11 +21,18 @@ Game::Game()
 
 void Game::run()
 {
+	sf::Clock clock;
+	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	while (m_window.isOpen()) 
 	{
 		processEvents();
-		update();
-		render();
+		timeSinceLastUpdate += clock.restart();
+		while (timeSinceLastUpdate > TimePerFrame)
+		{
+			timeSinceLastUpdate -= TimePerFrame;
+			update();
+			render();
+		}
 	}
 }
 
@@ -40,5 +56,6 @@ void Game::render()
 {
 	m_window.clear();
 	m_window.draw(m_player);
+	m_window.draw(m_fpsCounter);
 	m_window.display();
 }
