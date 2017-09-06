@@ -3,22 +3,16 @@
 
 Game::Game()
 :m_window(sf::VideoMode(800, 600), "Railworld test"),
-m_fpsCounter(), m_font(), m_player() 
+m_fpsCounter(), m_player() 
 {
-	if (!m_font.loadFromFile("Media/Fonts/arial.ttf"))
-	{
-		//ERROR!
-	}
-	if (!m_texture.loadFromFile("Media/Textures/Train Icon.png")) 
-	{
-		//ERROR!
-	}
+	m_textures.load(Textures::ID::Train, "Media/Textures/Train Icon.png");
+	m_fonts.load(Fonts::ID::Arial, "Media/Fonts/Arial.ttf");
 
 	m_fpsCounter.setPosition(0.f, 0.f);
 	m_fpsCounter.setString("0.0 FPS");
-	m_fpsCounter.setFont(m_font);
+	m_fpsCounter.setFont(m_fonts.get(Fonts::ID::Arial));
 
-	m_player.setTexture(m_texture);
+	m_player.setTexture(m_textures.get(Textures::ID::Train));
 	m_player.setPosition(100.f, 200.f);
 }
 
