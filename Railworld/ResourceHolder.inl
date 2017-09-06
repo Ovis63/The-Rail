@@ -3,10 +3,11 @@
 
 
 template <typename Resource, typename Identifier>
-void ResourceHolder<Resource, Identifier>::load(Identifier id, const std::string& filename)
+template <typename Parameter>
+void ResourceHolder<Resource, Identifier>::load(Identifier id, const std::string& filename, const Parameter& secondParam)
 {
 	std::unique_ptr<Resource> resource(new Resource());
-	if (!resource->loadFromFile(filename))
+	if (!resource->loadFromFile(filename, secondParam))
 	{
 		throw std::runtime_error("ResourceHolder::load - Failed to load " + filename);
 	}
