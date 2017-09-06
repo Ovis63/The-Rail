@@ -9,14 +9,17 @@ m_fpsCounter(), m_font(), m_player()
 	{
 		//ERROR!
 	}
+	if (!m_texture.loadFromFile("Media/Textures/Train Icon.png")) 
+	{
+		//ERROR!
+	}
 
 	m_fpsCounter.setPosition(0.f, 0.f);
 	m_fpsCounter.setString("0.0 FPS");
 	m_fpsCounter.setFont(m_font);
 
-	m_player.setRadius(80.f);
+	m_player.setTexture(m_texture);
 	m_player.setPosition(100.f, 200.f);
-	m_player.setFillColor(sf::Color::Cyan);
 }
 
 void Game::run()

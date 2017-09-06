@@ -1,4 +1,5 @@
 #pragma once
+#include "ResourceHolder.h"
 
 class Game
 {
@@ -14,7 +15,8 @@ private:
 
 private:
 	sf::RenderWindow m_window;
-	sf::CircleShape m_player;
+	sf::Texture m_texture;
+	sf::Sprite m_player;
 	sf::Text m_fpsCounter;
 	sf::Font m_font;
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
