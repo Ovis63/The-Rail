@@ -5,7 +5,7 @@ Game::Game()
 :m_window(sf::VideoMode(800, 600), "Railworld test"),
 m_fpsCounter(), m_font(), m_player() 
 {
-	if (!m_font.loadFromFile("arial.ttf"))
+	if (!m_font.loadFromFile("Media/Fonts/arial.ttf"))
 	{
 		//ERROR!
 	}
