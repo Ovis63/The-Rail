@@ -29,6 +29,8 @@ void Game::run()
 		timeSinceLastUpdate += clock.restart();
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
+			float fps = 1.f / timeSinceLastUpdate.asSeconds();
+			m_fpsCounter.setString(std::to_string(fps));
 			timeSinceLastUpdate -= TimePerFrame;
 			update();
 			render();
